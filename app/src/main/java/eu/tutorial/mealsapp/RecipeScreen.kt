@@ -10,6 +10,7 @@ import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -26,7 +27,7 @@ import coil.compose.rememberAsyncImagePainter
 fun RecipieScreen(modifier: Modifier = Modifier) {
     val recipeViewModel: MainViewModel = viewModel()
     val viewState by recipeViewModel.categoryState
-    
+
     Box(modifier = Modifier.fillMaxSize()) {
         when {
             viewState.loading -> {
@@ -34,7 +35,7 @@ fun RecipieScreen(modifier: Modifier = Modifier) {
             }
 
             viewState.error != null -> {
-                Text("Error occured")
+                Text("Error occured", color = MaterialTheme.colorScheme.onBackground)
             }
 
             else -> {
@@ -69,7 +70,7 @@ fun CategoryItem(category: Category) {
 
         Text(
             text = category.strCategory,
-            color = Color.Black,
+            color = MaterialTheme.colorScheme.onBackground,
             style = TextStyle(fontWeight = FontWeight.Bold),
             modifier = Modifier.padding(top = 4.dp)
         )
